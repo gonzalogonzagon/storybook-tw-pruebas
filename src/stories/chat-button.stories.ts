@@ -1,40 +1,24 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
- 
+import type { Meta, StoryObj } from '@storybook/angular';
+import { fn } from '@storybook/test';
 import { ChatButtonComponent } from '../app/chat/chat-button/chat-button/chat-button.component';
-import { last } from 'rxjs';
- 
-//👇 This default export determines where your story goes in the story list
+
+
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta: Meta<ChatButtonComponent> = {
+  title: 'Chat/Chat-Button',
   component: ChatButtonComponent,
   tags: ['autodocs'],
-  decorators: [
-    moduleMetadata({
-        imports: [ChatButtonComponent],
-    }),
-  ],
   argTypes: {
-    // Por ejemplo, si tu botón tiene una propiedad disabled:
-    // disabled: { control: 'boolean' },
+
   },
-};
- 
-export default meta;
-type Story = StoryObj<ChatButtonComponent>;
- 
-export const FirstStory: Story = {
-  args: {
-    //👇 The args you need here will depend on your component
-  },
-  // Si necesitas renderizar algo específico:
-  render: (args) => ({
-    props: args,
-    template: '<app-chat-button></app-chat-button>'
-  })
+  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  //args: { onClick: fn() },
 };
 
-// Puedes tener múltiples stories para diferentes estados
-export const Disabled: Story = {
-    args: {
-      // disabled: true
-    },
-  };
+export default meta;
+type Story = StoryObj<ChatButtonComponent>;
+
+export const Primary: Story = {
+  args: {
+  },
+};

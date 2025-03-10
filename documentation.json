@@ -2,6 +2,51 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "ChatMessage",
+            "id": "interface-ChatMessage-978857c25dd831a2dc38bbcbe439a2ade6495adf86e84c87bcaf582db202d594b9bc2c19e717a05c973bac8bff52f3ce733f27ad6eaec3a5bf629a1732e15f21",
+            "file": "src/app/chat/chat-view/chat-view/chat-view.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { ChatInputComponent } from '../../chat-input/chat-input/chat-input.component';\r\n\r\ninterface ChatMessage {\r\n  text: string;\r\n  isUserMessage: boolean;\r\n  timestamp: Date;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-chat-view',\r\n  imports: [ChatInputComponent],\r\n  templateUrl: './chat-view.component.html',\r\n  styleUrl: './chat-view.component.css'\r\n})\r\nexport class ChatViewComponent {\r\n  messages: ChatMessage[] = [\r\n    {\r\n      text: 'Hola, ¿cómo estás?',\r\n      isUserMessage: false,\r\n      timestamp: new Date(Date.now() - 3 * 60000)\r\n    },\r\n    {\r\n      text: '¡Muy bien! ¿Y tú? Estoy probando esta nueva interfaz de chat.',\r\n      isUserMessage: true,\r\n      timestamp: new Date(Date.now() - 2 * 60000)\r\n    },\r\n    {\r\n      text: '¡Se ve genial! Me encanta cómo queda con Tailwind.',\r\n      isUserMessage: false,\r\n      timestamp: new Date(Date.now() - 1 * 60000)\r\n    }\r\n  ];\r\n\r\n  handleNewMessage(message: string): void {\r\n    // Añadir el mensaje del usuario\r\n    this.messages.push({\r\n      text: message,\r\n      isUserMessage: true,\r\n      timestamp: new Date()\r\n    });\r\n\r\n    // Simular respuesta automática\r\n    setTimeout(() => {\r\n      this.messages.push({\r\n        text: 'Gracias por tu mensaje. Te responderemos pronto.',\r\n        isUserMessage: false,\r\n        timestamp: new Date()\r\n      });\r\n    }, 1000);\r\n  }\r\n  \r\n  // Helper para formatear la hora\r\n  formatTime(date: Date): string {\r\n    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "isUserMessage",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "timestamp",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "User",
             "id": "interface-User-d4821beac0e4a852e513391b7470981c4353fdd95a18628bb68136c8695b489ee15b926e2e5031bc26cf30e1508e0a362c3ee13a06734702b4d15af140e485d5",
             "file": "src/stories/user.ts",
@@ -264,7 +309,7 @@
         },
         {
             "name": "ChatComponent",
-            "id": "component-ChatComponent-1ae4901368c81f744b90eaaf6ab2c2f3f3ab3fbd4f57eed9a22361646a88491b01a718ba8746925610e44c89fadfc854d818ebdb8c3b609d10ceda317c85b3b5",
+            "id": "component-ChatComponent-d9b1bdc43a58a138b50bacccff239705553333acc6aa04950b31ad719546221e5ca9c925656063ac47b12b909b5e792f52b134cabe1f1c9aac106db37f85f380",
             "file": "src/app/chat/chat.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -290,8 +335,117 @@
             "standalone": false,
             "imports": [
                 {
-                    "name": "RouterLink"
+                    "name": "ChatViewComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { ChatViewComponent } from './chat-view/chat-view/chat-view.component';\r\n\r\n@Component({\r\n  selector: 'app-chat',\r\n  imports: [ ChatViewComponent],\r\n  templateUrl: './chat.component.html',\r\n})\r\nexport class ChatComponent {\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<app-chat-view class=\"h-screen flex\"></app-chat-view>\r\n<!-- .chat-view-container {\r\n    height: 100vh;       /* equivalente a h-screen */\r\n    width: 100%;         /* equivalente a w-full */\r\n    display: flex;       /* equivalente a flex */\r\n    flex-direction: column; /* equivalente a flex-col */\r\n  } -->"
+        },
+        {
+            "name": "ChatInputComponent",
+            "id": "component-ChatInputComponent-b28af33bdb3994e4a3ce07f4138eac91159e95c945ccf78b5683b78a902f00b2f16a85a4e922f4781d2d775b0af69b72291e62d50d772846dfeffff093ecfc7c",
+            "file": "src/app/chat/chat-input/chat-input/chat-input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-chat-input",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./chat-input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "messageSent",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "autoResizeTextarea",
+                    "args": [
+                        {
+                            "name": "textarea",
+                            "type": "HTMLTextAreaElement",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nAuto-redimensiona el textarea cuando el usuario escribe\n",
+                    "description": "<p>Auto-redimensiona el textarea cuando el usuario escribe</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "textarea",
+                            "type": "HTMLTextAreaElement",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 },
+                {
+                    "name": "sendMessage",
+                    "args": [
+                        {
+                            "name": "textarea",
+                            "type": "HTMLTextAreaElement",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEnvía el mensaje y limpia el input\n",
+                    "description": "<p>Envía el mensaje y limpia el input</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "textarea",
+                            "type": "HTMLTextAreaElement",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
                 {
                     "name": "ChatButtonComponent",
                     "type": "component"
@@ -300,12 +454,125 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { RouterLink } from '@angular/router';\r\nimport { ChatButtonComponent } from \"./chat-button/chat-button/chat-button.component\";\r\n\r\n@Component({\r\n  selector: 'app-chat',\r\n  imports: [RouterLink, ChatButtonComponent],\r\n  templateUrl: './chat.component.html',\r\n})\r\nexport class ChatComponent {\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Output } from '@angular/core';\r\nimport { ChatButtonComponent } from \"../../chat-button/chat-button/chat-button.component\";\r\n\r\n@Component({\r\n  selector: 'app-chat-input',\r\n  imports: [ChatButtonComponent],\r\n  templateUrl: './chat-input.component.html',\r\n  styleUrl: './chat-input.component.css'\r\n})\r\nexport class ChatInputComponent {\r\n  @Output() messageSent = new EventEmitter<string>();\r\n  \r\n  /**\r\n   * Auto-redimensiona el textarea cuando el usuario escribe\r\n   */\r\n  autoResizeTextarea(textarea: HTMLTextAreaElement): void {\r\n    // Resetear la altura para calcular el tamaño correcto\r\n    textarea.style.height = 'auto';\r\n    \r\n    // Limitar la altura máxima a 150px (aproximadamente 6-7 líneas)\r\n    const maxHeight = 150;\r\n    \r\n    // Ajustar la altura basada en el contenido\r\n    textarea.style.height = Math.min(textarea.scrollHeight, maxHeight) + 'px';\r\n  }\r\n  \r\n  /**\r\n   * Envía el mensaje y limpia el input\r\n   */\r\n  sendMessage(textarea: HTMLTextAreaElement): void {\r\n    const message = textarea.value.trim();\r\n    \r\n    if (message) {\r\n      this.messageSent.emit(message);\r\n      textarea.value = '';\r\n      \r\n      // Resetear altura después de enviar\r\n      textarea.style.height = 'auto';\r\n      \r\n      // Dar foco de nuevo al textarea\r\n      textarea.focus();\r\n    }\r\n  }\r\n}\r\n",
+            "styleUrl": "./chat-input.component.css",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<p>Hello Chat</p>\r\n\r\n<app-chat-button></app-chat-button>"
+            "templateData": "<div class=\"flex w-full items-end gap-2 p-2 bg-white border-t border-gray-200 shadow-inner\">\r\n    <!-- Botón de adjuntar archivos -->\r\n    <button \r\n      class=\"p-2 rounded-full text-gray-500 hover:bg-gray-100 focus:outline-none transition-colors\"\r\n      aria-label=\"Adjuntar archivo\">\r\n      <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13\" />\r\n      </svg>\r\n    </button>\r\n    \r\n    <!-- Campo de texto -->\r\n    <div class=\"flex-grow relative bg-gray-50 rounded-2xl\">\r\n      <textarea \r\n        #messageInput\r\n        class=\"block w-full px-4 py-2 pr-12 resize-none rounded-2xl border border-gray-200 focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 bg-transparent\"\r\n        placeholder=\"Escribe un mensaje...\"\r\n        rows=\"1\"\r\n        (input)=\"autoResizeTextarea(messageInput)\">\r\n      </textarea>\r\n      \r\n      <!-- Botón de emoji (opcional) -->\r\n      <button \r\n        class=\"absolute bottom-2 right-3 p-1 rounded-full text-gray-500 hover:bg-gray-200 focus:outline-none transition-colors\"\r\n        aria-label=\"Insertar emoji\">\r\n        <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\r\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\" />\r\n        </svg>\r\n      </button>\r\n    </div>\r\n    \r\n    <!-- Botón de enviar -->\r\n    <!-- <button \r\n      class=\"p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors\"\r\n      aria-label=\"Enviar mensaje\"\r\n      (click)=\"sendMessage(messageInput)\">\r\n      <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\">\r\n        <path d=\"M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z\" />\r\n      </svg>\r\n    </button> -->\r\n    <app-chat-button (click)=\"sendMessage(messageInput)\"></app-chat-button>\r\n  </div>"
+        },
+        {
+            "name": "ChatViewComponent",
+            "id": "component-ChatViewComponent-978857c25dd831a2dc38bbcbe439a2ade6495adf86e84c87bcaf582db202d594b9bc2c19e717a05c973bac8bff52f3ce733f27ad6eaec3a5bf629a1732e15f21",
+            "file": "src/app/chat/chat-view/chat-view/chat-view.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-chat-view",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./chat-view.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "messages",
+                    "defaultValue": "[\r\n    {\r\n      text: 'Hola, ¿cómo estás?',\r\n      isUserMessage: false,\r\n      timestamp: new Date(Date.now() - 3 * 60000)\r\n    },\r\n    {\r\n      text: '¡Muy bien! ¿Y tú? Estoy probando esta nueva interfaz de chat.',\r\n      isUserMessage: true,\r\n      timestamp: new Date(Date.now() - 2 * 60000)\r\n    },\r\n    {\r\n      text: '¡Se ve genial! Me encanta cómo queda con Tailwind.',\r\n      isUserMessage: false,\r\n      timestamp: new Date(Date.now() - 1 * 60000)\r\n    }\r\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChatMessage[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "formatTime",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 54,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleNewMessage",
+                    "args": [
+                        {
+                            "name": "message",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "message",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "ChatInputComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { ChatInputComponent } from '../../chat-input/chat-input/chat-input.component';\r\n\r\ninterface ChatMessage {\r\n  text: string;\r\n  isUserMessage: boolean;\r\n  timestamp: Date;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-chat-view',\r\n  imports: [ChatInputComponent],\r\n  templateUrl: './chat-view.component.html',\r\n  styleUrl: './chat-view.component.css'\r\n})\r\nexport class ChatViewComponent {\r\n  messages: ChatMessage[] = [\r\n    {\r\n      text: 'Hola, ¿cómo estás?',\r\n      isUserMessage: false,\r\n      timestamp: new Date(Date.now() - 3 * 60000)\r\n    },\r\n    {\r\n      text: '¡Muy bien! ¿Y tú? Estoy probando esta nueva interfaz de chat.',\r\n      isUserMessage: true,\r\n      timestamp: new Date(Date.now() - 2 * 60000)\r\n    },\r\n    {\r\n      text: '¡Se ve genial! Me encanta cómo queda con Tailwind.',\r\n      isUserMessage: false,\r\n      timestamp: new Date(Date.now() - 1 * 60000)\r\n    }\r\n  ];\r\n\r\n  handleNewMessage(message: string): void {\r\n    // Añadir el mensaje del usuario\r\n    this.messages.push({\r\n      text: message,\r\n      isUserMessage: true,\r\n      timestamp: new Date()\r\n    });\r\n\r\n    // Simular respuesta automática\r\n    setTimeout(() => {\r\n      this.messages.push({\r\n        text: 'Gracias por tu mensaje. Te responderemos pronto.',\r\n        isUserMessage: false,\r\n        timestamp: new Date()\r\n      });\r\n    }, 1000);\r\n  }\r\n  \r\n  // Helper para formatear la hora\r\n  formatTime(date: Date): string {\r\n    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });\r\n  }\r\n}\r\n",
+            "styleUrl": "./chat-view.component.css",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"flex flex-col h-full w-full bg-gray-50\"> <!-- w-full eliminado -->\r\n  <!-- Área de mensajes (se desplazará) -->\r\n  <div class=\"flex-grow overflow-y-auto p-4 space-y-3\">\r\n    <!-- Aquí irán los mensajes del chat -->\r\n    <!-- Mensaje recibido -->\r\n    <div class=\"flex flex-start\">\r\n      <div class=\"bg-white rounded-lg py-2 px-4 max-w-[75%] shadow-sm\">\r\n        <p class=\"text-gray-800\">Hola, ¿cómo estás?</p>\r\n        <span class=\"text-xs text-gray-500\">10:30</span>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Mensaje enviado -->\r\n    \r\n    <div class=\"flex justify-end\">\r\n      <div class=\"bg-blue-500 rounded-lg py-2 px-4 max-w-[75%] shadow-sm\">\r\n        <p class=\"text-white\">¡Muy bien! ¿Y tú? Estoy probando esta nueva interfaz de chat.</p>\r\n        <span class=\"text-xs text-blue-100\">10:32</span>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Otro mensaje recibido -->\r\n    <div class=\"flex flex-start\">\r\n      <div class=\"bg-white rounded-lg py-2 px-4 max-w-[75%] shadow-sm\">\r\n        <p class=\"text-gray-800\">¡Se ve genial! Me encanta cómo queda con Tailwind.</p>\r\n        <span class=\"text-xs text-gray-500\">10:33</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <!-- Área de entrada fija en la parte inferior -->\r\n  <div class=\"sticky bottom-0 bg-white border-t border-gray-200 w-full\">\r\n    <app-chat-input (messageSent)=\"handleNewMessage($event)\" class=\"w-full block\">\r\n    </app-chat-input>\r\n\r\n    <!-- Botón flotante para móvil (visible solo en pantallas pequeñas)\r\n      <div class=\"md:hidden fixed bottom-4 right-4\">\r\n        <app-chat-button></app-chat-button>\r\n      </div> -->\r\n  </div>\r\n</div>"
         },
         {
             "name": "HeaderComponent",
@@ -567,7 +834,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 9,
+        "count": 11,
         "status": "low",
         "files": [
             {
@@ -596,6 +863,33 @@
                 "name": "ChatButtonComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/chat/chat-input/chat-input/chat-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ChatInputComponent",
+                "coveragePercent": 50,
+                "coverageCount": "2/4",
+                "status": "medium"
+            },
+            {
+                "filePath": "src/app/chat/chat-view/chat-view/chat-view.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ChatViewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/chat/chat-view/chat-view/chat-view.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ChatMessage",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
