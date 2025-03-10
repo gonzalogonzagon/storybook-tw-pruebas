@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChatViewComponent } from './chat-view/chat-view/chat-view.component';
 
 @Component({
   selector: 'app-chat',
-  imports: [RouterLink],
+  imports: [ ChatViewComponent],
   templateUrl: './chat.component.html',
 })
 export class ChatComponent {
