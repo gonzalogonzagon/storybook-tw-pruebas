@@ -1,0 +1,41 @@
+<div class="flex flex-col h-full w-full bg-gray-50"> <!-- w-full eliminado -->
+  <!-- Área de mensajes (se desplazará) -->
+  <div class="flex-grow overflow-y-auto p-4 space-y-3">
+    <!-- Aquí irán los mensajes del chat -->
+    <!-- Mensaje recibido -->
+    <div class="flex flex-start">
+      <div class="bg-white rounded-lg py-2 px-4 max-w-[75%] shadow-sm">
+        <p class="text-gray-800">Hola, ¿cómo estás?</p>
+        <span class="text-xs text-gray-500">10:30</span>
+      </div>
+    </div>
+
+    <!-- Mensaje enviado -->
+    
+    <div class="flex justify-end">
+      <div class="bg-blue-500 rounded-lg py-2 px-4 max-w-[75%] shadow-sm">
+        <p class="text-white">¡Muy bien! ¿Y tú? Estoy probando esta nueva interfaz de chat.</p>
+        <span class="text-xs text-blue-100">10:32</span>
+      </div>
+    </div>
+
+    <!-- Otro mensaje recibido -->
+    <div class="flex flex-start">
+      <div class="bg-white rounded-lg py-2 px-4 max-w-[75%] shadow-sm">
+        <p class="text-gray-800">¡Se ve genial! Me encanta cómo queda con Tailwind.</p>
+        <span class="text-xs text-gray-500">10:33</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Área de entrada fija en la parte inferior -->
+  <div class="sticky bottom-0 bg-white border-t border-gray-200 w-full">
+    <app-chat-input (messageSent)="handleNewMessage($event)" class="w-full block">
+    </app-chat-input>
+
+    <!-- Botón flotante para móvil (visible solo en pantallas pequeñas)
+      <div class="md:hidden fixed bottom-4 right-4">
+        <app-chat-button></app-chat-button>
+      </div> -->
+  </div>
+</div>

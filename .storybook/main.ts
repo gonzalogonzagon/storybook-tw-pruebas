@@ -9,7 +9,16 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@chromatic-com/storybook",
-    "@storybook/addon-interactions"
+    "@storybook/addon-interactions",
+    // "@storybook/addon-styling", //agregado
+    // {
+    //   name: '@storybook/addon-postcss',
+    //   options: {
+    //     postcssLoaderOptions: {
+    //       implementation: require('postcss'),
+    //     },
+    //   },
+    // },
   ],
   "framework": {
     "name": "@storybook/angular",

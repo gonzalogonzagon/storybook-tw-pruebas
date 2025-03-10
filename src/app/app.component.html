@@ -1,4 +1,10 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
-<router-outlet />
+<main>
+  <header class="block h-[60px] px-4 py-3 shadow-md">
+    <a routerLink="">
+      <img class="h-full w-auto object-contain" src="favicon.ico" alt="logo" aria-hidden="true" />
+    </a>
+  </header>
+  <section class="p-[10px]">
+    <router-outlet></router-outlet>
+  </section>
+</main>
